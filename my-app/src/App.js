@@ -1,37 +1,27 @@
-import logo from './logo.svg';
-import React from 'react';
 import './App.css';
+import AddTodo from './pages/AddTodo';
+import HomePage from './pages/HomePage';
+// import React, { useState } from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
-function TodosFromFunction(props) {
-  return (
-    <div className="grid-item">
-      <h3>{props.status}</h3>
-      <p>{props.createdAt}</p>
-      <p>{props.todo}</p>
-    </div>
-  );
-}
 
 function App() {
-  const name = "VAN";
-  const date = new Date();
+  // const [todos, setTodos] = useState([]);
 
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const formattedUpdatedDate = `(${year}-${month}-${day})`;
-
+  // const addTodo = (newTodo) => {
+  //   setTodos([...todos, newTodo]);
+  // };
+  
   return (
-    <div className="App">
-      <h1>{name}'s To-do List</h1>
-      <div className="grid-container">
-        <TodosFromFunction createdAt={formattedUpdatedDate} status="CREATED" todo="Tugas Fisika dan Biologi" />
-        <TodosFromFunction createdAt={formattedUpdatedDate} status="IN-PROGRESS" todo="Tugas Matematika" />
-        <TodosFromFunction createdAt={formattedUpdatedDate} status="DONE" todo="Mengerjakan tugas Bahasa Inggris" />
-      </div>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/AddTodo" element={<AddTodo  />} />   
+    </Routes>
+    </BrowserRouter> 
   );
 }
+
 
 export default App;
 
