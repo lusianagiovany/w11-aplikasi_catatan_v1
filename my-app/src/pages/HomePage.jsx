@@ -6,8 +6,6 @@ import TodosFromFunction from '../components/TodosFromFunction';
 import { getTodos, handleDeleteTodo } from '../utils/local';
 
 
-
-
 function HomePage() {
   const name = "VAN";
   const date = new Date();
@@ -27,8 +25,6 @@ function HomePage() {
     setTodos(data);
   }, []);
 
-
-  
   const addTodo = () => {
     navigate('/AddTodo');
   }
