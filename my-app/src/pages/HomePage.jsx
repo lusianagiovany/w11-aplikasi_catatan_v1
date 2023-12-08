@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getNote, handleDeleteNotes } from '../utils/local';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
-import TodosFromFunction from '../components/TodosFromFunction';
-import { getTodos, handleDeleteTodo } from '../utils/local';
-
-
-
+import NotesFromFunction from '../components/NotesFromFunction';
 
 function HomePage() {
   const name = "VAN";
@@ -16,69 +13,77 @@ function HomePage() {
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   const formattedUpdatedDate = `(${year}-${month}-${day})`;
-  
+
   const navigate = useNavigate();
-  const [searchTodo, setSearchTodo] = useState("");
-  const [filteredTodos, setFilteredTodos] = useState([])
-  const [ todos, setTodos ] = useState([])
-  
+  const [searchNotes, setSearchNotes] = useState("");
+  const [filteredNotes, setFilteredNotes] = useState([]);
+  const [notes, setNotes] = useState([]);
+
   useEffect(() => {
-    const data = getTodos();
-    setTodos(data);
+    const data = getNote();
+    setNotes(data);
   }, []);
 
-
-  
-  const addTodo = () => {
-    navigate('/AddTodo');
-  }
- 
-  useEffect(() => {
-    setFilteredTodos(
-      todos.filter(todo =>
-        todo.todo.toLowerCase().includes(searchTodo.toLowerCase()) ||
-        todo.title.toLowerCase().includes(searchTodo.toLowerCase())
-    ) 
-  );
-  }, [searchTodo, todos]);
-
-  const onDeleteHandler = (deleteTodo) => {
-    handleDeleteTodo(deleteTodo);
-    setTodos(getTodos());
+  const addNote = () => {
+    navigate('/AddNote'); 
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/'); 
+  };
+
+  useEffect(() => {
+    setFilteredNotes(
+      notes.filter((note) =>
+        note.note.toLowerCase().includes(searchNotes.toLowerCase()) ||
+        note.title.toLowerCase().includes(searchNotes.toLowerCase())
+      )
+    );
+  }, [searchNotes, notes]);
   
+  const onDeleteHandler = (deleteNote) => {
+    handleDeleteNotes(deleteNote);
+    setNotes(getNote());
+  };
+
   return (
     <div className="App">
-       <h1>{name}'s To-do List</h1>
-       <div className="custom-form-container">
-         <Form>
-           <Form.Group className="mb-4 custom-form-group" controlId="formSearchFilter">
-             <Form.Label as="h3" className="custom-label">
-               Search Todo List
-             </Form.Label>
-             <Form.Control
-               size="lg"
-               type="search"
-               placeholder="Search..."
-               onChange={(e) => setSearchTodo(e.target.value)}
-             />
-           </Form.Group>
-           <Button variant="primary" type="submit" className="custom-button" onClick={addTodo}>
-             Add Todo
-           </Button>
-         </Form>
-       </div>
-       <div className="card-container">
-         {filteredTodos.map((todo, index) => (
-           <TodosFromFunction key={index}  
-           createdAt={formattedUpdatedDate} 
-           title={todo.title} 
-           todo={todo} 
-           onDelete={onDeleteHandler} />
-         ))}
-       </div>
-     </div>
-   );
- }
+      <h1>{name}'s Notes</h1>
+      <div className="custom-form-container">
+        <Form>
+          <Form.Group className="mb-4 custom-form-group" controlId="formSearchFilter">
+            <Form.Label as="h3" className="custom-label">
+              Search Notes
+            </Form.Label>
+            <Form.Control
+              size="lg"
+              type="search"
+              placeholder="Search Notes..."
+              onChange={(e) => setSearchNotes(e.target.value)}
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit" className="custom-button" onClick={addNote}>
+            Add New Note
+          </Button>
+        </Form>
+      </div>
+      <div className="card-container">
+        {filteredNotes.map((note, index) => (
+          <NotesFromFunction
+            key={index}
+            createdAt={formattedUpdatedDate}
+            title={note.title}
+            note={note}
+            onDelete={onDeleteHandler}
+          />
+        ))}
+      </div>
+      <Button variant="outline-primary" className="button-logout" onClick={handleLogout}>
+        Log Out
+      </Button>
+    </div>
+  );
+}
 
- export default HomePage;
+export default HomePage;

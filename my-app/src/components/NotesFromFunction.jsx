@@ -3,20 +3,20 @@ import Card from 'react-bootstrap/Card';
 import React, { useState, useEffect } from 'react';
 
 
-function TodosFromFunction({ todo, onDelete }) {
+function NotesFromFunction({ note, onDelete }) {
     const [createdAt, setCreatedAt] = useState("");
   
     useEffect(() => {
-      setCreatedAt(todo.createdAt.toLocaleString());
-    }, [todo.createdAt]);
+      setCreatedAt(note.createdAt.toLocaleString());
+    }, [note.createdAt]);
     
     return (
       <Card>
         <Card.Header as="h5">{createdAt}</Card.Header>
         <Card.Body>
-          <Card.Title>{todo.title}</Card.Title>
-          <Card.Text>{todo.todo}</Card.Text>
-          <Button variant="primary" onClick={() => onDelete(todo)}>
+          <Card.Title>{note.title}</Card.Title>
+          <Card.Text>{note.note}</Card.Text>
+          <Button variant="primary" onClick={() => onDelete(note)}>
             Delete
           </Button>
         </Card.Body>
@@ -24,4 +24,4 @@ function TodosFromFunction({ todo, onDelete }) {
     );
   }
 
-export default TodosFromFunction;
+export default NotesFromFunction;

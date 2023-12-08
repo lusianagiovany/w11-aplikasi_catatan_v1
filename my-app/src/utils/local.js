@@ -1,32 +1,31 @@
-
-let array_todos = [
-    { 
-      createdAt: new Date(), 
-      title: "Tugas Sekolah", 
-      todo: "Tugas Fisika dan Biologi" 
-    },
-    { 
-      createdAt: new Date(), 
-      title: "Tugas Rumah", 
-      todo: "Menyapu" 
-    },
-    { 
-      createdAt: new Date(), 
-      title: "Tugas Sehari-Hari", 
-      todo: "Membereskan kamar" 
-    },
+let array_notes = [
+  {
+    createdAt: new Date(),
+    title: "Tugas Sekolah",
+    note: "Tugas Fisika dan Biologi",
+  },
+  {
+    createdAt: new Date(),
+    title: "Tugas Rumah",
+    note: "Menyapu",
+  },
+  {
+    createdAt: new Date(),
+    title: "Tugas Sehari-Hari",
+    note: "Membereskan kamar",
+  },
 ];
 
-function addTodo(todo) {
-  array_todos = [...array_todos, todo];
+function addNote(note) {
+  array_notes = [...array_notes, note];
 }
 
-function getTodos() {
-    return array_todos;
+function getNote() {
+  return array_notes;
 }
 
-function handleDeleteTodo(deleteTodo) {
-    array_todos = array_todos.filter(todo => todo !== deleteTodo )
+function handleDeleteNotes(deleteNote) {
+  array_notes = array_notes.filter(note => note !== deleteNote);
 }
 
-export { getTodos, handleDeleteTodo, addTodo };
+export { getNote, handleDeleteNotes, addNote };

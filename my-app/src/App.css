@@ -36,14 +36,12 @@
     transform: rotate(360deg);
   }
 }
-
 h1 {
   text-align: center;
 }
 h3 {
   float: left;
 }
-
 .custom-form-container {
   gap: 20px; 
   padding: 100px;
@@ -61,7 +59,6 @@ h3 {
   padding-right: 100px;
   margin: 20px;
 }
-
 .form-container {
   padding-left: 100px;
   padding-top: 5px;
@@ -89,4 +86,28 @@ h4 {
 .button-home {
   float: right;
   margin-top: 100px;
+}
+.form-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 80vh;
+}
+.custom-login {
+  margin-bottom: 20px; 
+}
+.form-username,
+.form-password {
+  margin-bottom: 10px; 
+}
+.button-login {
+  margin-top: 5px; 
+}
+.label-register {
+    margin-top: 10px; 
+}
+.button-logout {
+  float: right;
+  margin: 120px;
 }

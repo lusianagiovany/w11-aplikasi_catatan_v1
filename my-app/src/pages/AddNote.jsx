@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { addNote } from '../utils/local';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
-import { addTodo } from '../utils/local';
 
-function AddTodo() {
+
+function AddNote() {
   const navigate = useNavigate();
-  const [todo, setTodo] = useState([]);
+  const [notes, setNotes] = useState([]);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    addTodo({
+    addNote({
       createdAt: new Date(),
-      title: todo.title,
-      todo: todo.description,
+      title: notes.title,
+      note: notes.description,
     });
-    navigate("/");
+    navigate("/home");
   };
   
   return (
     <Form onSubmit={(event) => onSubmitHandler(event)} className='card-container-addtodo'>
       <Form.Group controlId="exampleForm.ControlInput1" className="title-description-group">
         <Form.Label as="h4" className="custom-label-add">
-          Add To-Do List
+          Add New Notes
         </Form.Label>
         <Form.Label as="h5">Title</Form.Label>
         <Form.Control
           size="lg"
           type="text"
           placeholder="Title"
-          onChange={(event) => setTodo({ ...todo, title: event.target.value })}
+          onChange={(event) => setNotes({ ...notes, title: event.target.value })}
         />
       </Form.Group>
       <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -38,15 +39,15 @@ function AddTodo() {
           as="textarea"
           rows={5}
           placeholder="Write description here..."
-          value={todo.description}
-          onChange={(e) => setTodo({ ...todo, description: e.target.value })}
+          value={notes.description}
+          onChange={(e) => setNotes({ ...notes, description: e.target.value })}
         />
       </Form.Group>
       <Button variant="primary" type="button" className="button-add" onClick={onSubmitHandler}>
-        Add Todo
+        Add Notes
       </Button>
     </Form>
   );
 }
 
-export default AddTodo;
+export default AddNote;
