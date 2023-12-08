@@ -36,23 +36,78 @@
     transform: rotate(360deg);
   }
 }
-
 h1 {
   text-align: center;
 }
-.grid-container {
+h3 {
+  float: left;
+}
+.custom-form-container {
+  gap: 20px; 
+  padding: 100px;
+  margin: 20px;
+}
+.custom-button {
+  float: left;
+}
+.card-container {
   display: grid;
-  column-gap: 50px;
   grid-template-columns: repeat(3, 1fr);
+  gap: 30px; 
+  padding-left: 100px;
+  padding-top: 50px;
+  padding-right: 100px;
+  margin: 20px;
+}
+.form-container {
+  padding-left: 100px;
+  padding-top: 5px;
+  padding-right: 100px;
+  margin: 20px;
+}
+h5 {
+  float: left;
+}
+h4 {
+  text-align: center;
   padding: 50px;
 }
-
-.grid-item {
-  background-color:#6495ed;
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 20px;
-  text-align: center;
+.card-container-addtodo {
+  gap: 20px; 
+  padding: 100px;
+  margin: 20px;
 }
-
-
+.title-description-group {
+  margin-bottom: 20px; 
+}
+.button-add {
+  margin-top: 15px; 
+}
+.button-home {
+  float: right;
+  margin-top: 100px;
+}
+.form-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 80vh;
+}
+.custom-login {
+  margin-bottom: 20px; 
+}
+.form-username,
+.form-password {
+  margin-bottom: 10px; 
+}
+.button-login {
+  margin-top: 5px; 
+}
+.label-register {
+    margin-top: 10px; 
+}
+.button-logout {
+  float: right;
+  margin: 120px;
+}
